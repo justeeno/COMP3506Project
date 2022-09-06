@@ -17,6 +17,7 @@ class Hospital_2 (HospitalBase):
         """
             Add your code here!
         """
+        
         return True
 
     # ==============================  Add any extra functions below   ==============================
