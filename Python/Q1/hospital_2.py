@@ -22,6 +22,10 @@ class Hospital_2 (HospitalBase):
 
     # ==============================  Add any extra functions below   ==============================
 
+    def str_to_int(self, patient: Patient):
+        string = patient.time
+        time_int = string.replace(':','')
+        return time_int
 
 if __name__ == "__main__":
     """
