@@ -11,11 +11,11 @@ class Hospital_1 (HospitalBase):
         patient_time_list = []
         ordered_list = []
 
-    def __iter__(self):
+    def __iter__(self, patient_list):
         """
             Add your code here!
         """
-        return self
+        return patient
 
     def add_patient(self, patient: Patient):
         """
@@ -28,8 +28,6 @@ class Hospital_1 (HospitalBase):
         elif patient_time in self.patient_time_list:
             return False
         else:
-            self.patient_list.append(patient)
-            self.patient_time_list.append(patient_time)
             return True
 
     # ==============================  Add any extra functions below   ==============================
@@ -38,6 +36,9 @@ class Hospital_1 (HospitalBase):
         string = patient.time
         time_int = string.replace(':','')
         return time_int
+    
+    def append():
+        pass
 
 if __name__ == "__main__":
     """
