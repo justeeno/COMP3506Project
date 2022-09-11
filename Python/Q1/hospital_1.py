@@ -28,6 +28,7 @@ class Hospital_1 (HospitalBase):
         elif patient_time in self.patient_time_list:
             return False
         else:
+            self.append(self.patient_list, patient)
             return True
 
     # ==============================  Add any extra functions below   ==============================
@@ -37,8 +38,9 @@ class Hospital_1 (HospitalBase):
         time_int = string.replace(':','')
         return time_int
     
-    def append():
-        pass
+    def append(self, patients, element):
+        patients[len(patients):] = [element]
+        
 
 if __name__ == "__main__":
     """

@@ -25,6 +25,9 @@ class Hospital_3 (HospitalBase):
         string = patient.time
         time_int = string.replace(':','')
         return time_int
+    
+    def append(self, patients, element):
+        patients[len(patients):] = [element]
 
 if __name__ == "__main__":
     """
