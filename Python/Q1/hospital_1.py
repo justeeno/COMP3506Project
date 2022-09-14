@@ -11,10 +11,13 @@ class Hospital_1 (HospitalBase):
         patient_time_list = []
         ordered_list = []
 
-    def __iter__(self, patient_list):
+    def __iter__(self):
         """
             Add your code here!
         """
+        for patient in range(len(self.patient_list)):
+            
+            pass
         return patient
 
     def add_patient(self, patient: Patient):
@@ -29,6 +32,7 @@ class Hospital_1 (HospitalBase):
             return False
         else:
             self.append(self.patient_list, patient)
+            self.append(self.patient_time_list, patient_time)
             return True
 
     # ==============================  Add any extra functions below   ==============================

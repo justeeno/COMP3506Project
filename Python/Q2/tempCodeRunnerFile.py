@@ -1,0 +1,1 @@
+ssert login.hash_codes("GQHTMP") == login.hash_codes("H2HTN1")
