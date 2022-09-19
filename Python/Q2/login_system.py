@@ -6,11 +6,9 @@ class LoginSystem (LoginSystemBase):
 
     def __init__(self):
         super().__init__()
-        self.login_list_key = []
-        self.login_list_val = []
+        self.login_list = []
         for i in range(101):
-            self.login_list_key[i] = None
-            self.login_list_val[i] = None
+            self.login_list[i] = None
 
 
     """
@@ -19,13 +17,13 @@ class LoginSystem (LoginSystemBase):
 
     def __len__(self):
         count = 0
-        for i in range(len(self.login_list_key)):
+        for i in range(len(self.login_list)):
             count += 1
         return count
 
     def get_num_of_users(self):
         count = 0
-        for k in range(len(self.login_list_key)):
+        for k in range(len(self.login_list)):
             if self.login_list[k] != None:
                 count += 1
         return count

@@ -9,22 +9,23 @@ class Hospital_1 (HospitalBase):
         super().__init__()
         patient_list = []
         patient_time_list = []
-        ordered_list = []
 
     def __iter__(self):
         """
             Add your code here!
         """
-        for patient in range(len(self.patient_list)):
-            
-            pass
-        return patient
+        min_time = 0
+        first_patient = None
+        for patient in self:
+            time = self.str_to_int(patient.time)
+            if time < min_time:
+                first_patient = patient
+        return first_patient
 
     def add_patient(self, patient: Patient):
         """
             Add your code here!
         """
-        
         patient_time = patient.time
         if int(patient_time[3]) % 2 != 0 or int(patient_time[4] != 0):
             return False
@@ -43,8 +44,7 @@ class Hospital_1 (HospitalBase):
         return time_int
     
     def append(self, patients, element):
-        patients[len(patients):] = [element]
-        
+        patients[len(patients):] = [element]      
 
 if __name__ == "__main__":
     """
