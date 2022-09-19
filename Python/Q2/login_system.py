@@ -28,19 +28,35 @@ class LoginSystem (LoginSystemBase):
                 count += 1
         return count
 
-    def hash_codes(key: str):
-        pass
+    def hash_codes(self, key: str):
+        c = 31
+        str_val = []
+        res = 0
+        for a in key:
+            a_val = ord(a)
+            str_val[len(str_val):] = [a_val] 
+        
+        for val in range(len(str_val)):
+            if val < len(str_val) - 1:
+                res = (res + str_val[val]) * c
+                continue
+            else:
+                break
+        return res + str_val[-1]
 
     def add_user(self, email, password):
-        pass
+        val = self.hash_codes(email)
+        comp_func = val % len(self.login_list)
+        user = (email, password)
+        
 
     def remove_user(self, email, password):
         pass
 
     def check_password(self, email, password) -> int:
-        for i in range(len(self.login_list_key)):
-            if self.login_list_key[i] == email:
-                if self.login_list_val[i] == password:
+        for i in range(len(self.login_list)):
+            if self.login_list[i][0] == email:
+                if self.login_list[i][1] == password:
                     return i
                 else:
                     return -2

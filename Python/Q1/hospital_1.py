@@ -7,20 +7,25 @@ class Hospital_1 (HospitalBase):
 
     def __init__(self):
         super().__init__()
-        patient_list = []
-        patient_time_list = []
+        self.patient_list = []
+        self.patient_time_list = []
 
     def __iter__(self):
         """
             Add your code here!
         """
-        min_time = 0
-        first_patient = None
-        for patient in self:
-            time = self.str_to_int(patient.time)
-            if time < min_time:
-                first_patient = patient
-        return first_patient
+        # min_time = 0
+        # first_patient = None
+        # for patient in self.patient_list:
+        #     time = self.str_to_int(patient.time)
+        #     if time < min_time:
+        #         first_patient = patient
+
+        for patient in self.patient_list:
+            self.str_to_int(patient)
+        self.quicksort(self.patient_list)
+        
+        return self
 
     def add_patient(self, patient: Patient):
         """
@@ -41,10 +46,27 @@ class Hospital_1 (HospitalBase):
     def str_to_int(self, patient: Patient):
         string = patient.time
         time_int = string.replace(':','')
-        return time_int
+        time_int = int(time_int)
+        patient.time = time_int
+        return patient
     
-    def append(self, patients, element):
-        patients[len(patients):] = [element]      
+    def append(self, arr_list, element):
+        arr_list[len(arr_list):] = [element]    
+
+    def quicksort(self, arr):
+        if len(arr) <=1:
+            return arr
+        
+        pivot = arr[len(arr) // 2]
+        less, eq, greater = [], [], []
+        for i in arr:
+            if i < pivot: 
+                self.append(less.time, i)
+            elif i > pivot:
+                self.append(greater.time, i)
+            else:
+                self.append(eq.time, i)
+        return self.quicksort(less) + eq + self.quicksort(greater)
 
 if __name__ == "__main__":
     """
