@@ -47,11 +47,23 @@ class LoginSystem (LoginSystemBase):
     def add_user(self, email, password):
         val = self.hash_codes(email)
         comp_func = val % len(self.login_list)
-        user = (email, password)
+        user = [val, password]
+        for i in range(len(self.login_list)):
+            if self.login_list[comp_func + i] == None:
+                self.login_list[comp_func + i] = user
+            else:
+                continue
         
-
     def remove_user(self, email, password):
-        pass
+        val = self.hash_codes(email)
+        comp_func = val % len(self.login_list)
+        user = (val, password)
+        for i in range(len(self.login_list)):
+            if self.login_list[comp_func + i] == None:
+                self.login_list[comp_func + i] = user
+                return True
+            else:
+                continue
 
     def check_password(self, email, password) -> int:
         for i in range(len(self.login_list)):
