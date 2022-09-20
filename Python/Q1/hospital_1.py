@@ -1,4 +1,5 @@
 
+import time
 from hospital_base import HospitalBase
 from patient import Patient
 
@@ -7,8 +8,7 @@ class Hospital_1 (HospitalBase):
 
     def __init__(self):
         super().__init__()
-        self.patient_list = []
-        self.patient_time_list = []
+        self.patient_list = DoublyLinkedList()
 
     def __iter__(self):
         """
@@ -21,9 +21,9 @@ class Hospital_1 (HospitalBase):
         #     if time < min_time:
         #         first_patient = patient
 
-        for patient in self.patient_list:
-            self.str_to_int(patient)
-        self.quicksort(self.patient_list)
+        # for patient in self.patient_list:
+        #     self.str_to_int(patient)
+        # self.quicksort(self.patient_list)
         
         return self
 
@@ -31,15 +31,23 @@ class Hospital_1 (HospitalBase):
         """
             Add your code here!
         """
-        patient_time = patient.time
-        if int(patient_time[3]) % 2 != 0 or int(patient_time[4] != 0):
-            return False
-        elif patient_time in self.patient_time_list:
-            return False
+        # patient_time = patient.time
+        # if int(patient_time[3]) % 2 != 0 or int(patient_time[4]) != 0:
+        #     return False
+        # elif patient_time in self.patient_time_list:
+        #     return False
+        # else:
+        #     if len(self.patient_list) == 0:
+        #         self.patient_list.insert_to_list(patient)
+        #     else:
+        #         self.patient_list.insert_to_tail(patient)
+        #     return True
+        if len(self.patient_list) != 0:
+            self.patient_list.insert_to_list(patient)
         else:
-            self.append(self.patient_list, patient)
-            self.append(self.patient_time_list, patient_time)
-            return True
+            pass
+            
+
 
     # ==============================  Add any extra functions below   ==============================
 
@@ -47,26 +55,66 @@ class Hospital_1 (HospitalBase):
         string = patient.time
         time_int = string.replace(':','')
         time_int = int(time_int)
-        patient.time = time_int
-        return patient
+        return time_int
     
     def append(self, arr_list, element):
         arr_list[len(arr_list):] = [element]    
 
-    def quicksort(self, arr):
-        if len(arr) <=1:
-            return arr
+    # def quicksort(self, arr):
+    #     if len(arr) <=1:
+    #         return arr
         
-        pivot = arr[len(arr) // 2]
-        less, eq, greater = [], [], []
-        for i in arr:
-            if i < pivot: 
-                self.append(less.time, i)
-            elif i > pivot:
-                self.append(greater.time, i)
-            else:
-                self.append(eq.time, i)
-        return self.quicksort(less) + eq + self.quicksort(greater)
+    #     pivot = arr[len(arr) // 2]
+    #     less, eq, greater = [], [], []
+    #     for i in arr:
+    #         if i < pivot: 
+    #             self.append(less.time, i)
+    #         elif i > pivot:
+    #             self.append(greater.time, i)
+    #         else:
+    #             self.append(eq.time, i)
+    #     return self.quicksort(less) + eq + self.quicksort(greater)
+
+class Node:
+    def __init__(self, data):
+        self.item = data
+        self.head = None
+        self.tail = None
+
+class DoublyLinkedList:
+    def __init__(self):
+        self.start_node = None
+
+    def insert_to_list(self, data):
+        if self.start_node is None:
+            new_node = Node(data)
+            self.start_node = new_node
+        else:
+            print("The list is empty")
+
+    def insert_to_tail(self, data):
+        if self.start_node is None:
+            new_node = Node(data)
+            self.start_node = new_node
+            return
+        n = self.start_node
+        while n.head is not None:
+            n = n.head
+        new_node = Node(data)
+        n.head = new_node
+        new_node.tail = n
+
+    def insert_to_head(self, data):
+        if self.start_node is None:
+            new_node = Node(data)
+            self.start_node = new_node
+            return
+        n = self.start_node
+        while n.tail is not None:
+            n = n.tail
+        new_node = Node(data)
+        n.tail = new_node
+        new_node.head = n
 
 if __name__ == "__main__":
     """

@@ -6,22 +6,19 @@ class LoginSystem (LoginSystemBase):
 
     def __init__(self):
         super().__init__()
-        self.login_list = [0 for i in range(101)]
+        self.login_list = [None for i in range(101)]
         
     """
         Implement the described functions here !
     """
 
     def __len__(self):
-        count = 0
-        for i in range(len(self.login_list)):
-            count += 1
-        return count
+        return len(self.login_list)
 
     def get_num_of_users(self):
         count = 0
         for k in range(len(self.login_list)):
-            if self.login_list[k] != 0:
+            if self.login_list[k] != None:
                 count += 1
         return count
 
@@ -44,51 +41,41 @@ class LoginSystem (LoginSystemBase):
     def add_user(self, email, password):
         val = self.hash_codes(email)
         comp_func = val % len(self.login_list)
-        in_range = True
-        for j in range(len(self.login_list)):
-            if self.login_list[j] != 0:
-                continue
-            else:
-                in_range = False
         
-        if in_range == False:
-            extra_space = [0 for i in range(len(self.login_list))]
+        if self.get_num_of_users == len(self.login_list):
+            extra_space = [None for i in range(len(self.login_list))]
             self.login_list = self.login_list + (extra_space * 2)
 
-        if self.login_list[comp_func]:
-            lp_counter = 0
+        if self.login_list[comp_func] != None:
             for i in range(comp_func, len(self.login_list)):
-                if self.login_list[i + lp_counter] == 0:
-                    self.login_list[i + lp_counter] = [email, password]
-                    lp_counter += 1
+                if self.login_list[i] == None:
+                    self.login_list[i] = [email, password]
                     return True
-                elif self.login_list[i + lp_counter][0] == email:
-                    lp_counter += 1
+                elif self.login_list[i] != None:
+                    continue
+                elif self.login_list[i][0] == email:
                     return False
         else:
-            self.login_list[comp_func] = [val, password]
+            self.login_list[comp_func] = [email, password]
             return True
-        # user = [val, password]
-        # for i in range(len(self.login_list)):
-        #     if self.login_list[comp_func + i] == None:
-        #         self.login_list[comp_func + i] = user
-        #     else:
-        #         continue
         
     def remove_user(self, email, password):
-        val = self.hash_codes(email)
-        comp_func = val % len(self.login_list)
-        user = [email, password]
-        for i in range(len(self.login_list)):
-            if self.login_list[comp_func + i] == None:
-                self.login_list[comp_func + i] = user
-                return True
-            else:
-                continue
+        password_correct = self.check_password(email, password)
+
+        if password_correct in (-1, -2):
+            return False
+        else:
+            self.login_list[password_correct] = None
+            return True
 
     def check_password(self, email, password) -> int:
-        for i in range(len(self.login_list)):
-            if self.login_list[i][0] == email:
+        val = self.hash_codes(email)
+        comp_func = val % len(self.login_list)
+
+        for i in range(comp_func, len(self.login_list)):
+            if self.login_list[i] == None:
+                continue
+            elif self.login_list[i][0] == email:
                 if self.login_list[i][1] == password:
                     return i
                 else:
@@ -99,8 +86,13 @@ class LoginSystem (LoginSystemBase):
         
 
     def change_password(self, email, old_password, new_password) -> bool:
-        return True
+        password_correct = self.check_password(email, old_password)
 
+        if password_correct in (-1, -2):
+            return False
+        else:
+            self.login_list[password_correct] = [email, new_password]
+            return True
 
 if __name__ == "__main__":
     """

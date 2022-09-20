@@ -28,6 +28,21 @@ class Hospital_3 (HospitalBase):
     
     def append(self, patients, element):
         patients[len(patients):] = [element]
+    
+    def quicksort(self, arr):
+        if len(arr) <=1:
+            return arr
+        
+        pivot = arr[len(arr) // 2]
+        less, eq, greater = [], [], []
+        for i in arr:
+            if i < pivot: 
+                self.append(less.time, i)
+            elif i > pivot:
+                self.append(greater.time, i)
+            else:
+                self.append(eq.time, i)
+        return self.quicksort(less) + eq + self.quicksort(greater)
 
 if __name__ == "__main__":
     """
