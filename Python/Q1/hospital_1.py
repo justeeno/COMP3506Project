@@ -116,17 +116,17 @@ class DoublyLinkedList:
         n.tail = new_node
         new_node.head = n
 
-# if __name__ == "__main__":
-#     """
-#             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#             REMOVE THE MAIN FUNCTION BEFORE SUBMITTING TO THE AUTOGRADER 
-#             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#             The following main function is provided for simple debugging only
-#         """
-#     hospital = Hospital_1()
-#     hospital.add_patient(Patient("Max", "11:00"))
-#     hospital.add_patient(Patient("Alex", "13:20"))
-#     hospital.add_patient(Patient("George", "14:00"))
-#     list_of_patients = [Patient("Max", "11:00"), Patient("Alex", "13:20"), Patient("George", "14:00")]
-#     for i, el in enumerate(hospital):
-#         assert el == list_of_patients[i]
+if __name__ == "__main__":
+    """
+            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            REMOVE THE MAIN FUNCTION BEFORE SUBMITTING TO THE AUTOGRADER 
+            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            The following main function is provided for simple debugging only
+        """
+    hospital = Hospital_1()
+    hospital.add_patient(Patient("Max", "11:00"))
+    hospital.add_patient(Patient("Alex", "13:20"))
+    hospital.add_patient(Patient("George", "14:00"))
+    list_of_patients = [Patient("Max", "11:00"), Patient("Alex", "13:20"), Patient("George", "14:00")]
+    for i, el in enumerate(hospital):
+        assert el == list_of_patients[i]

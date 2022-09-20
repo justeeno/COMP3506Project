@@ -44,18 +44,18 @@ class Hospital_3 (HospitalBase):
                 self.append(eq.time, i)
         return self.quicksort(less) + eq + self.quicksort(greater)
 
-# if __name__ == "__main__":
-#     """
-#             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#             REMOVE THE MAIN FUNCTION BEFORE SUBMITTING TO THE AUTOGRADER 
-#             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#             The following main function is provided for simple debugging only
-#         """
-#     ll = Hospital_3()
-#     ll.add_patient(Patient("Max", "11:00"))
-#     ll.add_patient(Patient("Alex", "13:15"))
-#     ll.add_patient(Patient("George", "14:00"))
-#     list_of_patients = [Patient("Max", "11:00"), Patient("Alex", "13:15"), Patient("George", "14:00")]
-#     for i, el in enumerate(ll):
-#         assert el == list_of_patients[i]
+if __name__ == "__main__":
+    """
+            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            REMOVE THE MAIN FUNCTION BEFORE SUBMITTING TO THE AUTOGRADER 
+            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            The following main function is provided for simple debugging only
+        """
+    ll = Hospital_3()
+    ll.add_patient(Patient("Max", "11:00"))
+    ll.add_patient(Patient("Alex", "13:15"))
+    ll.add_patient(Patient("George", "14:00"))
+    list_of_patients = [Patient("Max", "11:00"), Patient("Alex", "13:15"), Patient("George", "14:00")]
+    for i, el in enumerate(ll):
+        assert el == list_of_patients[i]
 
