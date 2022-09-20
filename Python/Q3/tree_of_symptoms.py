@@ -17,7 +17,22 @@ class TreeOfSymptoms(TreeOfSymptomsBase):
     """
         Implement the described functions here !
     """
+    def in_order_traversal(self):
+        stack = []
+        result = []
+        if self.root == None:
+            return result
+        elif self.root != None or len(stack) != 0:
+            pass
+        else:
+            pass
 
+
+    def post_order_traversal(self):
+        pass
+
+    def tree_restructure(self, severity):
+        pass
 
 if __name__ == "__main__":
     """
