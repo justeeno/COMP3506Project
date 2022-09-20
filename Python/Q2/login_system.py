@@ -6,11 +6,8 @@ class LoginSystem (LoginSystemBase):
 
     def __init__(self):
         super().__init__()
-        self.login_list = []
-        for i in range(101):
-            self.login_list[i] = None
-
-
+        self.login_list = [0 for i in range(101)]
+        
     """
         Implement the described functions here !
     """
@@ -24,7 +21,7 @@ class LoginSystem (LoginSystemBase):
     def get_num_of_users(self):
         count = 0
         for k in range(len(self.login_list)):
-            if self.login_list[k] != None:
+            if self.login_list[k] != 0:
                 count += 1
         return count
 
@@ -47,17 +44,41 @@ class LoginSystem (LoginSystemBase):
     def add_user(self, email, password):
         val = self.hash_codes(email)
         comp_func = val % len(self.login_list)
-        user = [val, password]
-        for i in range(len(self.login_list)):
-            if self.login_list[comp_func + i] == None:
-                self.login_list[comp_func + i] = user
-            else:
+        in_range = True
+        for j in range(len(self.login_list)):
+            if self.login_list[j] != 0:
                 continue
+            else:
+                in_range = False
+        
+        if in_range == False:
+            extra_space = [0 for i in range(len(self.login_list))]
+            self.login_list = self.login_list + (extra_space * 2)
+
+        if self.login_list[comp_func]:
+            lp_counter = 0
+            for i in range(comp_func, len(self.login_list)):
+                if self.login_list[i + lp_counter] == 0:
+                    self.login_list[i + lp_counter] = [email, password]
+                    lp_counter += 1
+                    return True
+                elif self.login_list[i + lp_counter][0] == email:
+                    lp_counter += 1
+                    return False
+        else:
+            self.login_list[comp_func] = [val, password]
+            return True
+        # user = [val, password]
+        # for i in range(len(self.login_list)):
+        #     if self.login_list[comp_func + i] == None:
+        #         self.login_list[comp_func + i] = user
+        #     else:
+        #         continue
         
     def remove_user(self, email, password):
         val = self.hash_codes(email)
         comp_func = val % len(self.login_list)
-        user = (val, password)
+        user = [email, password]
         for i in range(len(self.login_list)):
             if self.login_list[comp_func + i] == None:
                 self.login_list[comp_func + i] = user
@@ -73,7 +94,9 @@ class LoginSystem (LoginSystemBase):
                 else:
                     return -2
             else:
-                return -1
+                continue
+        return -1
+        
 
     def change_password(self, email, old_password, new_password) -> bool:
         return True
