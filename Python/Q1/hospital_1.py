@@ -8,44 +8,47 @@ class Hospital_1 (HospitalBase):
 
     def __init__(self):
         super().__init__()
-        self.patient_list = DoublyLinkedList()
+        self.patient_list = []
+        self.patient_list_time = []
 
     def __iter__(self):
         """
             Add your code here!
         """
-        # min_time = 0
-        # first_patient = None
-        # for patient in self.patient_list:
-        #     time = self.str_to_int(patient.time)
-        #     if time < min_time:
-        #         first_patient = patient
+        min_time = 0
+        first_patient = None
+        for patient in self.patient_list:
+            time = self.str_to_int(patient.time)
+            if time < min_time:
+                first_patient = patient
 
         # for patient in self.patient_list:
         #     self.str_to_int(patient)
         # self.quicksort(self.patient_list)
         
-        return self
+        yield first_patient
 
     def add_patient(self, patient: Patient):
         """
             Add your code here!
         """
-        # patient_time = patient.time
-        # if int(patient_time[3]) % 2 != 0 or int(patient_time[4]) != 0:
-        #     return False
-        # elif patient_time in self.patient_time_list:
-        #     return False
-        # else:
-        #     if len(self.patient_list) == 0:
-        #         self.patient_list.insert_to_list(patient)
-        #     else:
-        #         self.patient_list.insert_to_tail(patient)
-        #     return True
-        if len(self.patient_list) != 0:
-            self.patient_list.insert_to_list(patient)
+        patient_time = patient.time
+        if int(patient_time[3]) % 2 != 0 or int(patient_time[4]) != 0:
+            return False
+        elif patient_time in self.patient_list_time:
+            return False
         else:
-            pass
+            self.append(self.patient_list, patient)
+            self.append(self.patient_list_time, patient_time)
+            # if len(self.patient_list) == 0:
+            #     self.append(self.patient_list, patient)
+            # else:
+            #     self.patient_list.insert_to_tail(patient)
+            return True
+        # if len(self.patient_list) != 0:
+        #     self.patient_list.insert_to_list(patient)
+        # else:
+        #     pass
             
 
 
