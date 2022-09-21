@@ -12,6 +12,7 @@ class Hospital_2 (HospitalBase):
         """
             Add your code here!
         """
+        return self
 
     def add_patient(self, patient: Patient):
         """

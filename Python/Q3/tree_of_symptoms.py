@@ -1,4 +1,5 @@
 
+from logging import root
 from tree_of_symptoms_base import SymptomBase, TreeOfSymptomsBase
 
 
@@ -8,7 +9,6 @@ class Symptom(SymptomBase):
     """
         Add functions here if necessary
     """
-
 
 class TreeOfSymptoms(TreeOfSymptomsBase):
     def __init__(self, root: Symptom):
@@ -20,13 +20,19 @@ class TreeOfSymptoms(TreeOfSymptomsBase):
     def in_order_traversal(self):
         stack = []
         result = []
+        og_root = self.root
         if self.root == None:
             return result
-        elif self.root != None or len(stack) != 0:
-            pass
         else:
-            pass
-
+            while self.root != None or len(stack) != 0:
+                while self.root is not None:
+                    stack.append(self.root)
+                    self.root = self.root.left
+                self.root = stack.pop()
+                result.append(self.root)
+                self.root = self.root.right
+        self.root = og_root
+        return result
 
     def post_order_traversal(self):
         pass
@@ -55,6 +61,7 @@ if __name__ == "__main__":
     for i, el in enumerate(in_order_traversal):
         assert el == correct_traversal[i]
     assert tree.root == red_eyes
+    
 
     tree.tree_restructure(severity=2)
     in_order_traversal = tree.in_order_traversal()
