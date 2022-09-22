@@ -61,26 +61,3 @@ class Hospital_3 (HospitalBase):
             if og_list[i] != element:
                 self.append(new_list, og_list[i])
         return new_list
-
-# if __name__ == "__main__":
-#     """
-#             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#             REMOVE THE MAIN FUNCTION BEFORE SUBMITTING TO THE AUTOGRADER 
-#             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#             The following main function is provided for simple debugging only
-#         """
-#     ll = Hospital_3()
-    
-#     ll.add_patient(Patient("George", "14:00"))
-#     ll.add_patient(Patient("Alex", "13:15"))
-#     ll.add_patient(Patient("Max", "11:00"))
-#     ll.add_patient(Patient("Justin", "12:00"))
-#     ll.add_patient(Patient("Alice", "10:15"))
-#     ll.add_patient(Patient("Emily", "10:15"))
-#     ll.add_patient(Patient("John", "18:05"))
-#     ll.add_patient(Patient("Sid", "08:43"))
-    
-#     list_of_patients = [Patient("Sid", "08:43"), Patient("Alice", "10:15"), Patient("Emily", "10:15"), Patient("Max", "11:00"), Patient("Alex", "13:15"), Patient("George", "14:00")]
-#     for i, el in enumerate(ll):
-#         assert el == list_of_patients[i]
-
