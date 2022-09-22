@@ -1,5 +1,4 @@
 
-import time
 from hospital_base import HospitalBase
 from patient import Patient
 
