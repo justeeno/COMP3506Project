@@ -26,8 +26,6 @@ class Hospital_1 (HospitalBase):
         # for patient in self.patient_list:
         #     self.str_to_int(patient)
         # self.quicksort(self.patient_list)
-        
-        yield first_patient
 
     def add_patient(self, patient: Patient):
         """
@@ -35,28 +33,33 @@ class Hospital_1 (HospitalBase):
         """
 
         patient_time = self.str_to_int(patient)
+        patient_time_str = patient.time
         patient_element = [patient_time, patient]
         if patient_time < 800 or patient_time >= 1800:
             return False
         elif patient_time >= 1200 and patient_time < 1300:
             return False
-        else:
-            self.append(self.patient_list, patient_element)
-        return True
-
-        patient_time = patient.time
-        if int(patient_time[3]) % 2 != 0 or int(patient_time[4]) != 0:
+        if int(patient_time_str[3]) % 2 != 0 or int(patient_time_str[4]) != 0:
             return False
         elif patient_time in self.patient_list_time:
             return False
         else:
-            self.append(self.patient_list, patient)
+            self.append(self.patient_list, patient_element)
             self.append(self.patient_list_time, patient_time)
+        return True
+
+        # if int(patient_time[3]) % 2 != 0 or int(patient_time[4]) != 0:
+        #     return False
+        # elif patient_time in self.patient_list_time:
+        #     return False
+        # else:
+        #     self.append(self.patient_list, patient)
+        #     self.append(self.patient_list_time, patient_time)
             # if len(self.patient_list) == 0:
             #     self.append(self.patient_list, patient)
             # else:
             #     self.patient_list.insert_to_tail(patient)
-            return True
+            # return True
         # if len(self.patient_list) != 0:
         #     self.patient_list.insert_to_list(patient)
         # else:
@@ -160,10 +163,16 @@ if __name__ == "__main__":
             !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             The following main function is provided for simple debugging only
         """
-    hospital = Hospital_1()
-    hospital.add_patient(Patient("Max", "11:00"))
-    hospital.add_patient(Patient("Alex", "13:20"))
-    hospital.add_patient(Patient("George", "14:00"))
-    list_of_patients = [Patient("Max", "11:00"), Patient("Alex", "13:20"), Patient("George", "14:00")]
-    for i, el in enumerate(hospital):
+    ll = Hospital_1()
+    ll.add_patient(Patient("George", "14:00"))
+    ll.add_patient(Patient("Alex", "13:15"))
+    ll.add_patient(Patient("Max", "11:00"))
+    ll.add_patient(Patient("Justin", "12:00"))
+    ll.add_patient(Patient("Alice", "10:00"))
+    ll.add_patient(Patient("Emily", "10:00"))
+    ll.add_patient(Patient("John", "18:05"))
+    ll.add_patient(Patient("Sid", "08:43"))
+    
+    list_of_patients = [Patient("Alice", "10:00"), Patient("Max", "11:00"), Patient("George", "14:00")]
+    for i, el in enumerate(ll):
         assert el == list_of_patients[i]
