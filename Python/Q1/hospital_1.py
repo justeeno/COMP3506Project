@@ -16,16 +16,6 @@ class Hospital_1 (HospitalBase):
             Add your code here!
         """
         return self
-        # min_time = 0
-        # first_patient = None
-        # for patient in self.patient_list:
-        #     time = self.str_to_int(patient.time)
-        #     if time < min_time:
-        #         first_patient = patient
-
-        # for patient in self.patient_list:
-        #     self.str_to_int(patient)
-        # self.quicksort(self.patient_list)
 
     def add_patient(self, patient: Patient):
         """
@@ -46,26 +36,7 @@ class Hospital_1 (HospitalBase):
         else:
             self.append(self.patient_list, patient_element)
             self.append(self.patient_list_time, patient_time)
-        return True
-
-        # if int(patient_time[3]) % 2 != 0 or int(patient_time[4]) != 0:
-        #     return False
-        # elif patient_time in self.patient_list_time:
-        #     return False
-        # else:
-        #     self.append(self.patient_list, patient)
-        #     self.append(self.patient_list_time, patient_time)
-            # if len(self.patient_list) == 0:
-            #     self.append(self.patient_list, patient)
-            # else:
-            #     self.patient_list.insert_to_tail(patient)
-            # return True
-        # if len(self.patient_list) != 0:
-        #     self.patient_list.insert_to_list(patient)
-        # else:
-        #     pass
-            
-
+        return True           
 
     # ==============================  Add any extra functions below   ==============================
 
@@ -100,79 +71,4 @@ class Hospital_1 (HospitalBase):
                 self.append(new_list, og_list[i])
         return new_list  
 
-    # def quicksort(self, arr):
-    #     if len(arr) <=1:
-    #         return arr
-        
-    #     pivot = arr[len(arr) // 2]
-    #     less, eq, greater = [], [], []
-    #     for i in arr:
-    #         if i < pivot: 
-    #             self.append(less.time, i)
-    #         elif i > pivot:
-    #             self.append(greater.time, i)
-    #         else:
-    #             self.append(eq.time, i)
-    #     return self.quicksort(less) + eq + self.quicksort(greater)
 
-# class Node:
-#     def __init__(self, data):
-#         self.item = data
-#         self.head = None
-#         self.tail = None
-
-# class DoublyLinkedList:
-#     def __init__(self):
-#         self.start_node = None
-
-#     def insert_to_list(self, data):
-#         if self.start_node is None:
-#             new_node = Node(data)
-#             self.start_node = new_node
-#         else:
-#             print("The list is empty")
-
-#     def insert_to_tail(self, data):
-#         if self.start_node is None:
-#             new_node = Node(data)
-#             self.start_node = new_node
-#             return
-#         n = self.start_node
-#         while n.head is not None:
-#             n = n.head
-#         new_node = Node(data)
-#         n.head = new_node
-#         new_node.tail = n
-
-#     def insert_to_head(self, data):
-#         if self.start_node is None:
-#             new_node = Node(data)
-#             self.start_node = new_node
-#             return
-#         n = self.start_node
-#         while n.tail is not None:
-#             n = n.tail
-#         new_node = Node(data)
-#         n.tail = new_node
-#         new_node.head = n
-
-if __name__ == "__main__":
-    """
-            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            REMOVE THE MAIN FUNCTION BEFORE SUBMITTING TO THE AUTOGRADER 
-            !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            The following main function is provided for simple debugging only
-        """
-    ll = Hospital_1()
-    ll.add_patient(Patient("George", "14:00"))
-    ll.add_patient(Patient("Alex", "13:15"))
-    ll.add_patient(Patient("Max", "11:00"))
-    ll.add_patient(Patient("Justin", "12:00"))
-    ll.add_patient(Patient("Alice", "10:00"))
-    ll.add_patient(Patient("Emily", "10:00"))
-    ll.add_patient(Patient("John", "18:05"))
-    ll.add_patient(Patient("Sid", "08:43"))
-    
-    list_of_patients = [Patient("Alice", "10:00"), Patient("Max", "11:00"), Patient("George", "14:00")]
-    for i, el in enumerate(ll):
-        assert el == list_of_patients[i]

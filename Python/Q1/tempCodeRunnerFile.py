@@ -1,2 +1,2 @@
-if self.patient_list[patient] in self.ordered_list:
-            #     continue
+
+        self.patient_list = self.remove(self.patient_list, first_patient)
