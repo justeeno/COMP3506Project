@@ -30,7 +30,7 @@ class Hospital_1 (HospitalBase):
             return False
         if int(patient_time_str[3]) % 2 != 0 or int(patient_time_str[4]) != 0:
             return False
-        elif patient_time in self.patient_list_time:
+        elif self.found(self.patient_list_time, patient_time):
             return False
         else:
             self.append(self.patient_list, patient_element)
@@ -69,3 +69,8 @@ class Hospital_1 (HospitalBase):
             if og_list[i] != element:
                 self.append(new_list, og_list[i])
         return new_list  
+
+    def found(self, patients, element):
+        for i in patients:
+            if i == element:
+                return True
