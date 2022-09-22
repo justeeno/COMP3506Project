@@ -27,7 +27,7 @@ class Hospital_3 (HospitalBase):
             return False
         else:
             self.append(self.patient_list, patient_element)
-        return True
+            return True
 
     # ==============================  Add any extra functions below   ==============================
 

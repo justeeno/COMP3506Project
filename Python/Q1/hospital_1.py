@@ -36,7 +36,7 @@ class Hospital_1 (HospitalBase):
         else:
             self.append(self.patient_list, patient_element)
             self.append(self.patient_list_time, patient_time)
-        return True           
+            return True           
 
     # ==============================  Add any extra functions below   ==============================
 

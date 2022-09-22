@@ -31,7 +31,7 @@ class Hospital_2 (HospitalBase):
         
         for patient in self.patient_list:
             self.append(self.patient_list_2, patient)
-        return True
+            return True
 
     # ==============================  Add any extra functions below   ==============================
 
