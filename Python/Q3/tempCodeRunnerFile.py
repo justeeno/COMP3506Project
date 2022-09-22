@@ -1,6 +1,6 @@
-tree.tree_restructure(severity=2)
-    # in_order_traversal = tree.in_order_traversal()
-    # correct_traversal = [red_eyes, cough, fever]
-    # for i, el in enumerate(in_order_traversal):
-    #     assert el == correct_traversal[i]
-    # assert tree.root == cough
+if been_here:
+            #     current_node.right = past_node
+            # elif been_there:
+            #     current_node.left = past_node
+            # been_here = False
+            # been_there = False

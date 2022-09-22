@@ -58,63 +58,35 @@ class TreeOfSymptoms(TreeOfSymptomsBase):
         return result
 
     def tree_restructure(self, severity):
-        all_nodes = self.post_order_traversal()
+        all_nodes = self.in_order_traversal()
         threshold = severity
-        left_tree = []
-        right_tree = []
-        cur_sev = 0
-        root_found = False
-        for node in range(len(all_nodes)):
-            temp_node = all_nodes[node]
-            if temp_node.severity > cur_sev:
-                cur_sev = temp_node.severity
-                cur_sev_node = temp_node
-            if temp_node.severity == threshold:
-                self.root = temp_node
-                root_found = True
-            elif temp_node.severity > threshold:
-                if root_found == True:
-                    right_tree.append(temp_node)
-                elif temp_node.severity <= cur_sev:
-                    lowest_sev = temp_node
-                    print("lowest", lowest_sev)
-                    
-                    if temp_node == all_nodes[-1]:
-                        self.root = lowest_sev
-                        print("here3")
-                    continue
+        ideal_root = None
+        below_root = None
+
+        for node in all_nodes:
+            if node.severity >= threshold and (ideal_root is None or node.severity < ideal_root.severity):
+                ideal_root = node
+            elif node.severity < threshold and (below_root is None or node.severity > below_root.severity):
+                below_root = node
+
+        if ideal_root is not None:
+            self.root = ideal_root
+        else:
+            self.root = below_root
+        
+        all_nodes.remove(self.root)
+        for node in all_nodes:
+            current_node = Symptom(self.root.symptom, self.root.severity)
+            print(current_node)
+            while current_node.right is not None or current_node.left is not None:
+                if node.severity < current_node.severity:
+                    current_node = current_node.left
                 else:
-                    right_tree.append(temp_node)
-            elif temp_node.severity < threshold:
-                left_tree.append(temp_node)
-
-        if len(left_tree) == len(all_nodes):
-            self.root = cur_sev_node
-        
-        for node in range(len(left_tree)):
-            self.root.left = left_tree[node]
-            if left_tree[node] == left_tree[0]:
-                self.root = self.root.left
-            if left_tree[node].severity < self.root.severity:
-                self.root.left = left_tree[node]
-            elif left_tree[node].severity > self.root.severity:
-                self.root.right = left_tree[node]
-                
-        for node in range(len(right_tree)):
-            self.root.right = right_tree[node]
-            if len(right_tree) == 0:
-                break
-            if right_tree[node] == right_tree[0]:
-                self.root = self.root.right
-            if right_tree[node].severity < self.root.severity:
-                self.root.left = right_tree[node]
-            elif right_tree[node].severity > self.root.severity:
-                self.root.right = right_tree[node]
-        
-        print("root = ", self.root.left)
-        print("right_tree = ", right_tree)
-        print("left_tree = ", left_tree)
-
+                    current_node = current_node.right
+            if node.severity > current_node.severity:
+                current_node.right = node
+            else:
+                current_node.left = node  
 
 if __name__ == "__main__":
     """

@@ -49,14 +49,14 @@ class LoginSystem (LoginSystemBase):
         if self.login_list[comp_func] != None:
             for i in range(comp_func, len(self.login_list)):
                 if self.login_list[i] == None:
-                    self.login_list[i] = [email, password]
+                    self.login_list[i] = [self.hash_codes(email), self.hash_codes(password)]
                     return True
                 elif self.login_list[i] != None:
                     continue
                 elif self.login_list[i][0] == email:
                     return False
         else:
-            self.login_list[comp_func] = [email, password]
+            self.login_list[comp_func] = [self.hash_codes(email), self.hash_codes(password)]
             return True
         
     def remove_user(self, email, password):
@@ -75,8 +75,8 @@ class LoginSystem (LoginSystemBase):
         for i in range(comp_func, len(self.login_list)):
             if self.login_list[i] == None:
                 continue
-            elif self.login_list[i][0] == email:
-                if self.login_list[i][1] == password:
+            elif self.login_list[i][0] == val:
+                if self.login_list[i][1] == self.hash_codes(password):
                     return i
                 else:
                     return -2
@@ -91,7 +91,7 @@ class LoginSystem (LoginSystemBase):
         if password_correct in (-1, -2):
             return False
         else:
-            self.login_list[password_correct] = [email, new_password]
+            self.login_list[password_correct] = [self.hash_codes(email), self.hash_codes(new_password)]
             return True
 
 # if __name__ == "__main__":
