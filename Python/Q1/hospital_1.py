@@ -14,7 +14,7 @@ class Hospital_1 (HospitalBase):
         """
             Add your code here!
         """
-        yield self
+        return self
 
     def add_patient(self, patient: Patient):
         """
