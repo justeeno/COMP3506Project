@@ -110,33 +110,32 @@ class TreeOfSymptoms(TreeOfSymptomsBase):
         return current_node
         
 
-# if __name__ == "__main__":
-#     """
-#         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#         REMOVE THE MAIN FUNCTION BEFORE SUBMITTING TO THE AUTOGRADER 
-#         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#         The following main function is provided for simple debugging only
-#     """
+if __name__ == "__main__":
+    """
+        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        REMOVE THE MAIN FUNCTION BEFORE SUBMITTING TO THE AUTOGRADER 
+        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        The following main function is provided for simple debugging only
+    """
 
-#     cough = Symptom("Cough", severity=3)
-#     fever = Symptom("Fever", severity=6)
-#     red_eyes = Symptom("Red Eyes", severity=1)
+    cough = Symptom("Cough", severity=3)
+    fever = Symptom("Fever", severity=6)
+    red_eyes = Symptom("Red Eyes", severity=1)
 
-#     red_eyes.left = cough
-#     red_eyes.right = fever
+    red_eyes.left = cough
+    red_eyes.right = fever
 
-#     tree = TreeOfSymptoms(red_eyes)
-#     in_order_traversal = tree.post_order_traversal()
-#     correct_traversal = [cough, fever, red_eyes]
-#     for i, el in enumerate(in_order_traversal):
-#         assert el == correct_traversal[i]
-#     assert tree.root == red_eyes
+    tree = TreeOfSymptoms(red_eyes)
+    in_order_traversal = tree.post_order_traversal()
+    correct_traversal = [cough, fever, red_eyes]
+    for i, el in enumerate(in_order_traversal):
+        assert el == correct_traversal[i]
+    assert tree.root == red_eyes
     
 
-#     tree.tree_restructure(severity=2)
-#     in_order_traversal = tree.in_order_traversal()
-#     correct_traversal = [red_eyes, cough, fever]
-#     for i, el in enumerate(in_order_traversal):
-#         assert el == correct_traversal[i]
-#     assert tree.root == cough
-
+    tree.tree_restructure(severity=2)
+    in_order_traversal = tree.in_order_traversal()
+    correct_traversal = [red_eyes, cough, fever]
+    for i, el in enumerate(in_order_traversal):
+        assert el == correct_traversal[i]
+    assert tree.root == cough

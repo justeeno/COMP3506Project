@@ -28,7 +28,7 @@ class Hospital_1 (HospitalBase):
             return False
         elif int(patient_time_str[3]) % 2 != 0 or int(patient_time_str[4]) != 0:
             return False
-        elif self.found(self.patient_list, patient_element):
+        elif self.found(self.patient_list, patient_element[0]):
             return False
         else:
             self.patient_list = self.append(self.patient_list, patient_element)
@@ -41,7 +41,9 @@ class Hospital_1 (HospitalBase):
             raise StopIteration
         first_patient = None
         for patient in range(len(self.patient_list)):
-            if patient == 0:
+            if self.patient_list[patient] is None:
+                break
+            elif patient == 0:
                 first_patient = self.patient_list[patient]
             elif self.patient_list[patient][0] < first_patient[0]:
                 first_patient = self.patient_list[patient]
@@ -58,44 +60,36 @@ class Hospital_1 (HospitalBase):
         return int(time_int)
     
     def append(self, patients, element):
-        grow_array = [None for i in range(len(patients) + 1)]
+        grow_array = [None for i in range(len(patients) * 2)]
         if len(grow_array) == 0:
             patients = [element]
             return patients
         else:
+            counter = 0
             for i in range(len(patients)):
+                if patients[i] is None:
+                    break
                 grow_array[i] = patients[i]
+                counter +=1
             patients = []
-            grow_array[-1] = element
+            grow_array[counter] = element
             patients = grow_array
             return patients
 
     def remove(self, og_list, element):
         new_list = []
         for i in range(len(og_list)):
+            if og_list[i] is None:
+                break
             if og_list[i] != element:
                 new_list = self.append(new_list, og_list[i])
         return new_list
 
     def found(self, patients, element):
         for i in patients:
-            if i == element:
+            if i is None:
+                break
+            elif i[0] == element:
                 return True
             else:
                 continue
-
-if __name__ == "__main__":
-
-    ll = Hospital_1()
-    ll.add_patient(Patient("George", "14:00"))
-    ll.add_patient(Patient("Alex", "13:15"))
-    ll.add_patient(Patient("Max", "11:00"))
-    ll.add_patient(Patient("Justin", "12:00"))
-    ll.add_patient(Patient("Alice", "10:00"))
-    ll.add_patient(Patient("Emily", "10:00"))
-    ll.add_patient(Patient("John", "18:05"))
-    ll.add_patient(Patient("Sid", "08:43"))
-    
-    list_of_patients = [Patient("Alice", "10:00"), Patient("Max", "11:00"), Patient("George", "14:00")]
-    for i, el in enumerate(ll):
-        assert el == list_of_patients[i]
