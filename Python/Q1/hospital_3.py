@@ -63,7 +63,7 @@ class Hospital_3 (HospitalBase):
             counter = 0
             for i in range(len(patients)):
                 if patients[i] is None:
-                    continue
+                    break
                 grow_array[i] = patients[i]
                 counter +=1
             patients = []
