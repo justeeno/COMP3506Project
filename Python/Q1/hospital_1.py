@@ -50,7 +50,6 @@ class Hospital_1 (HospitalBase):
             else:
                 continue
         self.patient_list = self.remove(self.patient_list, first_patient)
-        # print(first_patient[1])
         return first_patient[1]
 
     def str_to_int(self, patient: Patient):
