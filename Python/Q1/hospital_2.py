@@ -26,7 +26,7 @@ class Hospital_2 (HospitalBase):
         elif patient_time >= 1200 and patient_time < 1300:
             return False
         else:
-            self.append(self.patient_list, patient_element)
+            self.patient_list = self.append(self.patient_list, patient_element)
             return True
 
     # ==============================  Add any extra functions below   ==============================
@@ -45,6 +45,7 @@ class Hospital_2 (HospitalBase):
             else:
                 continue
         self.patient_list = self.remove(self.patient_list, first_patient)
+        # print(first_patient[1])
         return first_patient[1]
 
     def str_to_int(self, patient: Patient):
