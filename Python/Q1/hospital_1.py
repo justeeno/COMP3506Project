@@ -61,7 +61,7 @@ class Hospital_1 (HospitalBase):
         return int(time_int)
     
     def append(self, patients, element):
-        grow_array = [None for i in range(len(patients)+1)]
+        grow_array = [None for i in range(len(patients) + 1)]
         if len(grow_array) == 0:
             patients = [element]
             return patients
