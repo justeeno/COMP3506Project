@@ -1,2 +1,2 @@
 
-        self.patient_list = self.remove(self.patient_list, first_patient)
+    def append(self, patients, element):

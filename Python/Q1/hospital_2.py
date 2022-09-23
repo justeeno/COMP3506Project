@@ -8,7 +8,6 @@ class Hospital_2 (HospitalBase):
     def __init__(self):
         super().__init__()
         self.patient_list = []
-        self.patient_list_2 = []
 
     def __iter__(self):
         """
@@ -28,9 +27,6 @@ class Hospital_2 (HospitalBase):
             return False
         else:
             self.append(self.patient_list, patient_element)
-        
-        for patient in self.patient_list:
-            self.append(self.patient_list_2, patient)
             return True
 
     # ==============================  Add any extra functions below   ==============================
@@ -57,11 +53,37 @@ class Hospital_2 (HospitalBase):
         return int(time_int)
     
     def append(self, patients, element):
-        patients[len(patients):] = [element]
+        grow_array = [None for i in range(len(patients)+1)]
+        if len(grow_array) == 0:
+            patients = [element]
+            return patients
+        else:
+            for i in range(len(patients)):
+                grow_array[i] = patients[i]
+            patients = []
+            grow_array[-1] = element
+            patients = grow_array
+            return patients
 
     def remove(self, og_list, element):
         new_list = []
         for i in range(len(og_list)):
             if og_list[i] != element:
-                self.append(new_list, og_list[i])
+                new_list = self.append(new_list, og_list[i])
         return new_list
+
+if __name__ == "__main__":
+
+    ll = Hospital_2()
+    ll.add_patient(Patient("George", "14:00"))
+    ll.add_patient(Patient("Alex", "13:15"))
+    ll.add_patient(Patient("Max", "11:00"))
+    ll.add_patient(Patient("Justin", "12:00"))
+    ll.add_patient(Patient("Alice", "10:00"))
+    ll.add_patient(Patient("Emily", "10:00"))
+    ll.add_patient(Patient("John", "18:05"))
+    ll.add_patient(Patient("Sid", "08:43"))
+    
+    list_of_patients = [Patient("Sid", "08:43"), Patient("Alice", "10:00"), Patient("Emily", "10:00"), Patient("Max", "11:00"), Patient("Alex", "13:15"), Patient("George", "14:00")]
+    for i, el in enumerate(ll):
+        assert el == list_of_patients[i]

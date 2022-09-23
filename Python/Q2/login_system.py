@@ -24,11 +24,11 @@ class LoginSystem (LoginSystemBase):
 
     def hash_codes(self, key: str):
         c = 31
-        str_val = []
+        str_val = [0 for i in range(len(key))]
         res = 0
-        for a in key:
-            a_val = ord(a)
-            str_val[len(str_val):] = [a_val] 
+        for a in range(len(key)):
+            a_val = ord(key[a]) 
+            str_val[a] = a_val
         
         for val in range(len(str_val)):
             if val < len(str_val) - 1:
@@ -94,21 +94,21 @@ class LoginSystem (LoginSystemBase):
             self.login_list[password_correct] = [self.hash_codes(email), self.hash_codes(new_password)]
             return True
 
-# if __name__ == "__main__":
-#     """
-#         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#         REMOVE THE MAIN FUNCTION BEFORE SUBMITTING TO THE AUTOGRADER 
-#         !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#         The following main function is provided for simple debugging only
-#     """
+if __name__ == "__main__":
+    """
+        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        REMOVE THE MAIN FUNCTION BEFORE SUBMITTING TO THE AUTOGRADER 
+        !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        The following main function is provided for simple debugging only
+    """
 
-#     login = LoginSystem()
+    login = LoginSystem()
 
-#     assert login.hash_codes("GQHTMP") == login.hash_codes("H2HTN1")
-#     assert len(login) == 101
-#     assert login.check_password("a@b.c", "L6ZS9") == -1
-#     login.add_user("a@b.c", "L6ZS9")
-#     assert login.check_password("a@b.c", "ZZZZZZ") == -2
-#     assert login.check_password("a@b.c", "L6ZS9") == 94
-#     login.remove_user("a@b.c", "L6ZS9")
-#     assert login.check_password("a@b.c", "L6ZS9") == -1
+    assert login.hash_codes("GQHTMP") == login.hash_codes("H2HTN1")
+    assert len(login) == 101
+    assert login.check_password("a@b.c", "L6ZS9") == -1
+    login.add_user("a@b.c", "L6ZS9")
+    assert login.check_password("a@b.c", "ZZZZZZ") == -2
+    assert login.check_password("a@b.c", "L6ZS9") == 94
+    login.remove_user("a@b.c", "L6ZS9")
+    assert login.check_password("a@b.c", "L6ZS9") == -1

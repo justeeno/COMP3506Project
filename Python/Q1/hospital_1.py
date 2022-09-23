@@ -61,16 +61,28 @@ class Hospital_1 (HospitalBase):
         return int(time_int)
     
     def append(self, patients, element):
-        patients[len(patients):] = [element]
+        grow_array = [None for i in range(len(patients)+1)]
+        if len(grow_array) == 0:
+            patients = [element]
+            return patients
+        else:
+            for i in range(len(patients)):
+                grow_array[i] = patients[i]
+            patients = []
+            grow_array[-1] = element
+            patients = grow_array
+            return patients
 
     def remove(self, og_list, element):
         new_list = []
         for i in range(len(og_list)):
             if og_list[i] != element:
-                self.append(new_list, og_list[i])
-        return new_list  
+                new_list = self.append(new_list, og_list[i])
+        return new_list
 
     def found(self, patients, element):
         for i in patients:
             if i == element:
                 return True
+            else:
+                continue
