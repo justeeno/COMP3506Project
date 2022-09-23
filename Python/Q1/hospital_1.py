@@ -8,7 +8,6 @@ class Hospital_1 (HospitalBase):
     def __init__(self):
         super().__init__()
         self.patient_list = []
-        self.patient_list_time = []
 
     def __iter__(self):
         """
@@ -20,7 +19,6 @@ class Hospital_1 (HospitalBase):
         """
             Add your code here!
         """
-
         patient_time = self.str_to_int(patient)
         patient_time_str = patient.time
         patient_element = [patient_time, patient]
@@ -28,13 +26,12 @@ class Hospital_1 (HospitalBase):
             return False
         elif patient_time >= 1200 and patient_time < 1300:
             return False
-        if int(patient_time_str[3]) % 2 != 0 or int(patient_time_str[4]) != 0:
+        elif int(patient_time_str[3]) % 2 != 0 or int(patient_time_str[4]) != 0:
             return False
-        elif self.found(self.patient_list_time, patient_time):
+        elif self.found(self.patient_list, patient_element):
             return False
         else:
-            self.append(self.patient_list, patient_element)
-            self.append(self.patient_list_time, patient_time)
+            self.patient_list = self.append(self.patient_list, patient_element)
             return True           
 
     # ==============================  Add any extra functions below   ==============================
@@ -87,3 +84,19 @@ class Hospital_1 (HospitalBase):
                 return True
             else:
                 continue
+
+if __name__ == "__main__":
+
+    ll = Hospital_1()
+    ll.add_patient(Patient("George", "14:00"))
+    ll.add_patient(Patient("Alex", "13:15"))
+    ll.add_patient(Patient("Max", "11:00"))
+    ll.add_patient(Patient("Justin", "12:00"))
+    ll.add_patient(Patient("Alice", "10:00"))
+    ll.add_patient(Patient("Emily", "10:00"))
+    ll.add_patient(Patient("John", "18:05"))
+    ll.add_patient(Patient("Sid", "08:43"))
+    
+    list_of_patients = [Patient("Alice", "10:00"), Patient("Max", "11:00"), Patient("George", "14:00")]
+    for i, el in enumerate(ll):
+        assert el == list_of_patients[i]
